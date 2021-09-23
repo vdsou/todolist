@@ -25,9 +25,8 @@ class Todo extends React.Component {
   }
 
   render() {
-    const { hasChecked } = this.state;
     const { data, onRemove } = this.props;
-    const { title, id } = data;
+    const { title, id, hasChecked } = data;
     return (
       <div>
         {title}

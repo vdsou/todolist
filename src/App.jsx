@@ -13,12 +13,26 @@ class App extends React.Component {
     this.updateCheckbox = this.updateCheckbox.bind(this);
   }
 
+  componentDidMount() {
+    this.loadTodosFromLocalStorage();
+  }
+
+  loadTodosFromLocalStorage() {
+    const loaded = JSON.parse(localStorage.getItem('todos'));
+    if (loaded) {
+      this.setState({
+        todos: loaded,
+      });
+    }
+  }
+
   createTodo(newTodo) {
     const { todos } = this.state;
     const updatedTodos = [...todos, newTodo];
     this.setState({
       todos: updatedTodos,
     });
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
   }
 
   removeTodo(TodoIdToRemove) {
@@ -27,6 +41,7 @@ class App extends React.Component {
     this.setState({
       todos: updatedTodos,
     });
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
   }
 
   updateCheckbox(updatedCheckboxData) {
@@ -41,6 +56,7 @@ class App extends React.Component {
     this.setState({
       todos: updatedTodos,
     });
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
   }
 
   render() {
