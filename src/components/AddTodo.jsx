@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import generateId from '../libs/generateId';
 
 class AddTodo extends React.Component {
   constructor() {
     super();
     this.initialState = {
+      id: 0,
       title: '',
     };
     this.state = this.initialState;
@@ -13,7 +15,9 @@ class AddTodo extends React.Component {
   }
 
   handleInput(event) {
+    const id = generateId(999999);
     this.setState({
+      id,
       title: event.target.value,
     });
   }
@@ -35,7 +39,9 @@ class AddTodo extends React.Component {
     );
   }
 }
+
 AddTodo.propTypes = {
   onCreate: PropTypes.func,
 }.isRequired;
+
 export default AddTodo;

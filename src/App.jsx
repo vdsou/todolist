@@ -1,5 +1,6 @@
 import React from 'react';
 import AddTodo from './components/AddTodo';
+import Todo from './components/Todo';
 
 class App extends React.Component {
   constructor() {
@@ -19,7 +20,15 @@ class App extends React.Component {
   }
 
   render() {
-    return <AddTodo onCreate={this.createTodo} />;
+    const { todos } = this.state;
+    return (
+      <div>
+        <AddTodo onCreate={this.createTodo} />
+        {todos.map((todo) => (
+          <Todo key={todo.id} data={todo} />
+        ))}
+      </div>
+    );
   }
 }
 
