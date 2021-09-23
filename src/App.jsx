@@ -13,6 +13,19 @@ class App extends React.Component {
     this.updateCheckbox = this.updateCheckbox.bind(this);
   }
 
+  componentDidMount() {
+    this.loadTodosFromLocalStorage();
+  }
+
+  loadTodosFromLocalStorage() {
+    const loaded = JSON.parse(localStorage.getItem('todos'));
+    if (loaded) {
+      this.setState({
+        todos: loaded,
+      });
+    }
+  }
+
   createTodo(newTodo) {
     const { todos } = this.state;
     const updatedTodos = [...todos, newTodo];
