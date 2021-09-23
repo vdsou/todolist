@@ -8,13 +8,15 @@ class Todo extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
-    const { title } = data;
+    const { data, onRemove } = this.props;
+    const { title, id } = data;
     return (
       <div>
         {title}
         <input type="checkbox" />
-        <button type="button">remove</button>
+        <button type="button" onClick={() => onRemove(id)}>
+          remove
+        </button>
       </div>
     );
   }
@@ -25,6 +27,7 @@ Todo.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
   }),
+  onRemove: PropTypes.func,
 }.isRequired;
 
 export default Todo;
