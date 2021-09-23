@@ -10,6 +10,7 @@ class App extends React.Component {
     };
     this.createTodo = this.createTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
+    this.updateCheckbox = this.updateCheckbox.bind(this);
   }
 
   createTodo(newTodo) {
@@ -28,13 +29,32 @@ class App extends React.Component {
     });
   }
 
+  updateCheckbox(updatedCheckboxData) {
+    const { todos } = this.state;
+    const updatedTodos = todos.map((todo) => {
+      const toUpdate = todo;
+      if (toUpdate.id === updatedCheckboxData.id) {
+        toUpdate.hasChecked = updatedCheckboxData.hasChecked;
+      }
+      return toUpdate;
+    });
+    this.setState({
+      todos: updatedTodos,
+    });
+  }
+
   render() {
     const { todos } = this.state;
     return (
       <div>
         <AddTodo onCreate={this.createTodo} />
         {todos.map((todo) => (
-          <Todo key={todo.id} data={todo} onRemove={this.removeTodo} />
+          <Todo
+            key={todo.id}
+            data={todo}
+            onRemove={this.removeTodo}
+            onCheck={this.updateCheckbox}
+          />
         ))}
       </div>
     );

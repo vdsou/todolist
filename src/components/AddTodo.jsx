@@ -8,6 +8,7 @@ class AddTodo extends React.Component {
     this.initialState = {
       id: 0,
       title: '',
+      hasChecked: false,
     };
     this.state = this.initialState;
     this.handleInput = this.handleInput.bind(this);
