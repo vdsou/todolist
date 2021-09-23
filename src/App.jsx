@@ -19,6 +19,7 @@ class App extends React.Component {
     this.setState({
       todos: updatedTodos,
     });
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
   }
 
   removeTodo(TodoIdToRemove) {
